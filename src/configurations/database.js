@@ -39,40 +39,46 @@ module.exports = {
     staging: {
       client: 'postgresql',
       connection: {
-        database: 'dbstaging',
-        user:     'username',
-        password: 'password'
+        host: process.env.DATABASE_SERVER || 'localhost',
+        port: process.env.DATABASE_PORT || 5432,
+        database: process.env.DATABASE_NAME || 'dbstag',
+        user: process.env.DATABASE_USERNAME || 'username',
+        password: process.env.DATABASE_PASSWORD || 'password',
+        ssl: true
       },
       pool: {
         min: 2,
         max: 10
       },
       migrations: {
-        directory: path.resolve(base, 'migrations', 'pg'),
+        directory: path.resolve(base, 'migrations'),
         tableName: 'migrations'
       },
       seeds: {
-        directory: path.resolve(base, 'seeds', 'pg')
+        directory: path.resolve(base, 'seeds')
       }
     },
   
     production: {
       client: 'postgresql',
       connection: {
-        database: 'dbprod',
-        user:     'username',
-        password: 'password'
+        host: process.env.DATABASE_SERVER || 'localhost',
+        port: process.env.DATABASE_PORT || 5432,
+        database: process.env.DATABASE_NAME || 'dbprod',
+        user: process.env.DATABASE_USERNAME || 'username',
+        password: process.env.DATABASE_PASSWORD || 'password',
+        ssl: true
       },
       pool: {
         min: 2,
         max: 10
       },
       migrations: {
-        directory: path.resolve(base, 'migrations', 'pg'),
+        directory: path.resolve(base, 'migrations'),
         tableName: 'migrations'
       },
       seeds: {
-        directory: path.resolve(base, 'seeds', 'pg')
+        directory: path.resolve(base, 'seeds')
       }
     }
   
